@@ -4,7 +4,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* width                 */
+/* width*/
 ::-webkit-scrollbar {
   width: 7px;
 }
@@ -110,6 +110,8 @@ a {
   padding-bottom: 1px;
 }
 
+/* Responsive */
+
 @media (max-width: 520px) {
   #nav__links {
     column-gap: 3em;
@@ -159,6 +161,8 @@ a {
   width: 0;
   height: 0;
 }
+
+/* Responsive */
 
 @media (max-width: 640px) {
   #members__button {

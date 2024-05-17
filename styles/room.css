@@ -229,6 +229,8 @@
   border-radius: 50%;
 }
 
+/* Responsive */
+
 @media (max-width: 1400px) {
   .video__container{
     height: 200px;

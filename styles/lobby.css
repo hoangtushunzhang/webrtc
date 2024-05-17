@@ -1,4 +1,4 @@
-#form__container {
+  #form__container {
     width: 90%;
     max-width: 600px;
     border-radius: 10px;
@@ -71,7 +71,7 @@
   }
   
   #avatar__selection {
-    margin-reight: 10px;
+    margin-right: 10px;
     display: flex;
     gap: 1em;
   }
