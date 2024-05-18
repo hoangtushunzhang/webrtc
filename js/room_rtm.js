@@ -1,4 +1,7 @@
+// Xử lí tham gia
+
 let handleMemberJoined = async (MemberId) => {
+    
     console.log('Một người mới vừa tham gia cuộc họp:', MemberId)
     addMemberToDom(MemberId)
 
@@ -9,7 +12,9 @@ let handleMemberJoined = async (MemberId) => {
     addBotMessageToDom(`Chào mừng bạn tham gia cuộc họp ${name}! 👋`)
 }
 
+// Thêm thành viên vào DOM
 let addMemberToDom = async (MemberId) => {
+
     let {name} = await rtmClient.getUserAttributesByKeys(MemberId, ['name'])
 
     let membersWrapper = document.getElementById('member__list')
@@ -21,19 +26,25 @@ let addMemberToDom = async (MemberId) => {
     membersWrapper.insertAdjacentHTML('beforeend', memberItem)
 }
 
+
+// Xử lí số lượng member
 let updateMemberTotal = async (members) => {
     let total = document.getElementById('members__count')
     total.innerText = members.length
 }
- 
+
+// Xử lí số lượng thành viên rời đi
 let handleMemberLeft = async (MemberId) => {
+
     removeMemberFromDom(MemberId)
 
     let members = await channel.getMembers()
     updateMemberTotal(members)
 }
 
+// Handle tên thành viên rời đi
 let removeMemberFromDom = async (MemberId) => {
+
     let memberWrapper = document.getElementById(`member__${MemberId}__wrapper`)
     let name = memberWrapper.getElementsByClassName('member_name')[0].textContent
     addBotMessageToDom(`${name} đã rời cuộc họp.`)
@@ -49,6 +60,8 @@ let getMembers = async () => {
     }
 }
 
+
+// Handle kênh chat
 let handleChannelMessage = async (messageData, MemberId) => {
     console.log('Vừa nhận được một tin nhắn mới ')
     let data = JSON.parse(messageData.text)
@@ -71,16 +84,23 @@ let handleChannelMessage = async (messageData, MemberId) => {
     }
 }
 
+
+// Handle gửi chat
 let sendMessage = async (e) => {
+
     e.preventDefault()
 
     let message = e.target.message.value
+
     channel.sendMessage({text:JSON.stringify({'type':'chat', 'message':message, 'displayName':displayName})})
     addMessageToDom(displayName, message)
     e.target.reset()
 }
 
+
+// Handle hiển thị chat
 let addMessageToDom = (name, message) => {
+
     let messagesWrapper = document.getElementById('messages')
 
     let newMessage = `<div class="message__wrapper">
@@ -99,6 +119,8 @@ let addMessageToDom = (name, message) => {
 }
 
 
+
+// Handle bot thông báo ô chat
 let addBotMessageToDom = (botMessage) => {
     let messagesWrapper = document.getElementById('messages')
 
@@ -117,11 +139,18 @@ let addBotMessageToDom = (botMessage) => {
     }
 }
 
+
+
+// Handle rời kênh
 let leaveChannel = async () => {
     await channel.leave()
     await rtmClient.logout()
 }
 
+
+// 
 window.addEventListener('beforeunload', leaveChannel)
+
 let messageForm = document.getElementById('message__form')
+
 messageForm.addEventListener('submit', sendMessage)
