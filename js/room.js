@@ -1,3 +1,4 @@
+// Khai báo các biến
 let messagesContainer = document.getElementById('messages');
 messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
@@ -9,6 +10,7 @@ const chatButton = document.getElementById('chat__button');
 
 let activeMemberContainer = false;
 
+//Hiển thị người dùng 
 memberButton.addEventListener('click', () => {
   if (activeMemberContainer) {
     memberContainer.style.display = 'none';
@@ -21,6 +23,7 @@ memberButton.addEventListener('click', () => {
 
 let activeChatContainer = false;
 
+// Hiển thị chat block
 chatButton.addEventListener('click', () => {
   if (activeChatContainer) {
     chatContainer.style.display = 'none';
@@ -35,6 +38,7 @@ let displayFrame = document.getElementById('stream__box')
 let videoFrames = document.getElementsByClassName('video__container')
 let userIdInDisplayFrame = null;
 
+// Mở rộng các khung hình 
 let expandVideoFrame = (e) => {
 
   let child = displayFrame.children[0]
@@ -59,7 +63,7 @@ for(let i = 0; videoFrames.length > i; i++){
   videoFrames[i].addEventListener('click', expandVideoFrame)
 }
 
-
+// Ẩn khung hình
 let hideDisplayFrame = () => {
     userIdInDisplayFrame = null
     displayFrame.style.display = null
