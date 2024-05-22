@@ -1,9 +1,5 @@
-<<<<<<< HEAD
+
 const APP_ID = "2888c638f9c242f9bfe9dc41f039f170"
-=======
-// ID lấy từ Agora 
-const APP_ID = "e6d527aab0d14bf6a5b3d914b55b1c2f"
->>>>>>> 49589ded3894479b329407ddc3536b051e72c34d
 
 let uid = sessionStorage.getItem('uid')
 if(!uid){
