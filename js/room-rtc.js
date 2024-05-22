@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 const APP_ID = "2888c638f9c242f9bfe9dc41f039f170"
+=======
+// ID lấy từ Agora 
+const APP_ID = "e6d527aab0d14bf6a5b3d914b55b1c2f"
+>>>>>>> 49589ded3894479b329407ddc3536b051e72c34d
 
 let uid = sessionStorage.getItem('uid')
 if(!uid){
@@ -6,6 +11,7 @@ if(!uid){
     sessionStorage.setItem('uid', uid)
 }
 
+// Khai báo các biến
 let token = null;
 let client;
 
@@ -31,6 +37,7 @@ let remoteUsers = {}
 let localScreenTracks;
 let sharingScreen = false;
 
+// Tham gia phòng
 let joinRoomInit = async () => {
     rtmClient = await AgoraRTM.createInstance(APP_ID)
     await rtmClient.login({uid,token})
@@ -54,6 +61,7 @@ let joinRoomInit = async () => {
     client.on('user-left', handleUserLeft)
 }
 
+// Kết nối stream
 let joinStream = async () => {
     document.getElementById('join-btn').style.display = 'none'
     document.getElementsByClassName('stream__actions')[0].style.display = 'flex'
@@ -123,6 +131,7 @@ let handleUserPublished = async (user, mediaType) => {
 
 }
 
+// Handle rời phòng 
 let handleUserLeft = async (user) => {
     delete remoteUsers[user.uid]
     let item = document.getElementById(`user-container-${user.uid}`)
